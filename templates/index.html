@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/static/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#add_atm").click(function(){
+                    alert("hi")
+                });
+            });
+        </script>
+    </head>
+    <style>
+       
+
+        /* tbody { */
+            /* overflow: scroll; */
+            /* max-height: 500px; */
+        /* } */
+    </style>
+    <!-- <form>
+        Username: <input type="text" id="u_id"  ><br>
+        Password: <input type="password" id ="passwd" ><br>
+
+        <input type="button" id="register"  value="Register">
+    </form> -->
+
+    <!-- <ol> -->
+        <!-- For loop logic of jinja template -->
+        <!-- {%for i in range(0, len)%} -->
+          
+            <!-- <li>H.No:{{atms[i].address.housenumber}}, {{atms[i].address.street}}, {{atms[i].address.city}}, {{atms[i].address.postalcode}}</li> -->
+
+            
+        <!-- {%endfor%} -->
+          
+     <!-- </ol> -->
+    <div>
+        <button style="float:right;" id="add_atm">Add New ATM</button>
+    </div>
+     <table style="width:100%", border="1">
+        <caption><b>Dutch ATM's List</b></caption>
+        <thead style="font-weight:bold;"> 
+            <tr><td>S.No</td><td>H.No</td><td>Street</td><td>City</td><td>Postal Code</td><td>Geo Location</td><td>distance</td><td>Opening Hours</td></tr>
+        </thead>
+        <tbody>
+        {%for i in range(0, len)%}
+            <tr> 
+                <td>{{i+1}}</td>             
+                <td>{{atms[i].address.housenumber}}</td>
+                <td>{{atms[i].address.street}}</td>
+                <td>{{atms[i].address.city}}</td>
+                <td>{{atms[i].address.postalcode}}</td>
+
+                <td>lat:{{ atms[i].address.geoLocation.lat }}, lang: {{ atms[i].address.geoLocation.lng }}</td>
+
+                <td>{{atms[i].distance}}</td>
+                
+                <td>
+                   {%for j in range(0, 7) %}
+                   
+                    Day{{ atms[i].openingHours[j].dayOfWeek }}:
+                        {%for hours in atms[i].openingHours[j].hours %}
+                            {{ hours.hourFrom }} -  {{ hours.hourTo }},
+                        {%endfor%}
+                    {%endfor%}
+
+                </td> 
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+</html>
